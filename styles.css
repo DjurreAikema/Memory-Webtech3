@@ -1,0 +1,87 @@
+body {
+  font-family: "Roboto Light", sans-serif;
+  font-size: 18px;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    grid-template-columns: repeat(1, 1fr);
+
+    grid-template-areas:
+    "header"
+    "board"
+    "high-score"
+    "settings";
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-areas:
+    "header none"
+    "board high-score"
+    "board settings";
+  }
+}
+
+.header {
+  grid-area: header;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  grid-area: board;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 3px;
+  height: 600px;
+}
+
+.high-score {
+  grid-area: high-score;
+}
+
+.settings {
+  grid-area: settings;
+}
+
+.card {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+
+  display: flex;
+  flex-grow: 1;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.card-closed {
+  background-color: lightgreen;
+}
+
+.card-open {
+  background-color: green;
+}
+
+.card-found {
+  background-color: purple;
+}
+
+p {
+  margin: 0;
+}
