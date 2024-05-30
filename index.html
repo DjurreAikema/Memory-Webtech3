@@ -12,7 +12,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="header">
+    <section class="header">
         <h1>JavaScript Memory</h1>
         <p>Verlopen tijd: <span id="elapsedTime">1</span></p>
         <p>Gevonden kaart-paren: <span id="foundPairs">1</span></p>
@@ -21,9 +21,9 @@
             <label for="remainingShowTime">Resterende toontijd:</label>
             <progress id="remainingShowTime" value="32" max="100"> 32%</progress>
         </div>
-    </div>
+    </section>
 
-    <div class="board">
+    <section class="board">
         <div class="card card-open">O</div>
         <div class="card card-found">G</div>
         <div class="card card-closed">+</div>
@@ -60,9 +60,9 @@
         <div class="card card-closed">+</div>
         <div class="card card-closed">+</div>
         <div class="card card-closed">+</div>
-    </div>
+    </section>
 
-    <div class="high-score">
+    <section class="high-score">
         <div>
             <p>Top vijf</p>
             <ol>
@@ -75,9 +75,9 @@
         </div>
 
         <p>Gemiddelde speeltijd: <span id="avaragePlayTime">1</span></p>
-    </div>
+    </section>
 
-    <div class="settings">
+    <section class="settings">
         <div>
             <label for="cardCharacters">Karakter op kaarten:</label>
             <select name="cardCharacters" id="cardCharacters">
@@ -109,7 +109,7 @@
         </div>
 
         <button id="startGame">Nieuw spel</button>
-    </div>
+    </section>
 </div>
 
 </body>
