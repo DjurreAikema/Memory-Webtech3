@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memory</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <h1>JavaScript Memory</h1>
+        <p>Verlopen tijd: <span id="elapsedTime">1</span></p>
+        <p>Gevonden kaart-paren: <span id="foundPairs">1</span></p>
+
+        <div>
+            <label for="remainingShowTime">Resterende toontijd:</label>
+            <progress id="remainingShowTime" value="32" max="100"> 32%</progress>
+        </div>
+    </div>
+
+    <div class="board">
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+        <div class="card">+</div>
+    </div>
+
+    <div class="high-score">
+        <div>
+            <p>Top vijf</p>
+            <ol>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+                <li>e</li>
+            </ol>
+        </div>
+
+        <p>Gemiddelde speeltijd: <span id="avaragePlayTime">1</span></p>
+    </div>
+
+    <div class="settings">
+        <div>
+            <label for="cardCharacters">Karakter op kaarten:</label>
+            <select name="cardCharacters" id="cardCharacters">
+                <option value="a">a</option>
+                <option value="b">b</option>
+                <option value="c">c</option>
+                <option value="d">d</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="boardSize">Afmeting bord:</label>
+            <input type="number" id="boardSize" name="boardSize" min="2" max="20" value="6"/>
+        </div>
+
+        <div>
+            <input type="color" id="cardColor" name="cardColor" value="#89f357"/>
+            <label for="cardColor">Kaartkleur Dicht</label>
+        </div>
+
+        <div>
+            <input type="color" id="cardColorOpen" name="cardColorOpen" value="#89f357"/>
+            <label for="cardColorOpen">Kaartkleur Open</label>
+        </div>
+
+        <div>
+            <input type="color" id="cardColorFound" name="cardColorFound" value="#89f357"/>
+            <label for="cardColorFound">Kaartkleur Gevonden</label>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
