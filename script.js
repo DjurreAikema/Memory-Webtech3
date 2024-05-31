@@ -3,6 +3,7 @@ import {generateCards} from "./generate-cards.js";
 // --- Elements
 const board = document.getElementById('board');
 const cardCharacterSelect = document.getElementById('cardCharacter');
+const foundPairsElement = document.getElementById('foundPairs');
 
 // --- Inputs
 let boardSize = document.getElementById('boardSize').value;
@@ -12,6 +13,7 @@ let cardCharacter = document.getElementById('cardCharacter').value;
 let cards = generateCards(boardSize);
 let openCards = [];
 let foundPairs = 0;
+foundPairsElement.textContent = foundPairs.toString();
 
 // check open cards for a pair
 const checkForPair = () => {
@@ -23,6 +25,7 @@ const checkForPair = () => {
       card1.changeState('found');
       card2.changeState('found');
       foundPairs++;
+      foundPairsElement.textContent = foundPairs.toString();
       openCards = [];
     }
   }
