@@ -1,4 +1,4 @@
-import {generateCards} from "./generate-cards.js";
+import {generateLetterCards} from "./generate-letter-cards.js";
 import {resetTimer, startTimer, stopTimer} from "./timer.js";
 import {generateImageCards} from "./generate-image-cards.js";
 
@@ -19,8 +19,8 @@ let cardCharacter = document.getElementById('cardCharacter').value;
 
 // --- Variables
 const pairs = boardSize * boardSize / 2;
-// let cards = generateCards(boardSize, pairs);
-let cards = await generateImageCards(boardSize, pairs);
+let cards = generateLetterCards(boardSize, pairs);
+// let cards = await generateImageCards(boardSize, pairs);
 let openCards = [];
 let foundPairs = 0;
 let gameStarted = false;
@@ -33,7 +33,7 @@ const checkForPair = () => {
     const card1 = openCards[0];
     const card2 = openCards[1];
 
-    if (card1.letter === card2.letter) {
+    if (card1.content === card2.content) {
       card1.changeState('found');
       card2.changeState('found');
       foundPairs++;

@@ -1,6 +1,6 @@
 import CardModel from "./card.model.js";
 import CardStateEnum from "./card-state.enum.js";
-import {shuffle} from "./generate-cards.js";
+import {shuffle} from "./generate-letter-cards.js";
 
 export const generateImageCards = async (boardSize, pairs) => {
   // Dictionary of cards

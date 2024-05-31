@@ -1,8 +1,8 @@
 class CardModel {
-  constructor(x, y, letter, state, element) {
+  constructor(x, y, content, state, element) {
     this.x = x;
     this.y = y;
-    this.letter = letter;
+    this.content = content;
     this.state = state;
     this.element = element;
   }
@@ -16,7 +16,7 @@ class CardModel {
     if (this.state === 'open') {
       this.element.classList.add('card-open');
       this.element.classList.remove('card-closed');
-      this.element.innerText = this.letter;
+      this.element.innerText = this.content;
     } else if (this.state === 'closed') {
       this.element.classList.add('card-closed');
       this.element.classList.remove('card-open');

@@ -1,7 +1,7 @@
 import CardModel from "./card.model.js";
 import CardStateEnum from "./card-state.enum.js";
 
-export const generateCards = (boardSize, pairs) => {
+export const generateLetterCards = (boardSize, pairs) => {
   // Dictionary of cards
   const cards = {};
 
