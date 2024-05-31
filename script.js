@@ -9,7 +9,6 @@ const cardCharacterSelect = document.getElementById('cardCharacter');
 let boardSize = document.getElementById('boardSize').value;
 let cardCharacter = document.getElementById('cardCharacter').value;
 
-
 // Dictionary of cards
 let cards = {};
 
@@ -24,11 +23,15 @@ const generateCards = () => {
 
 // Add cards to the board
 const addCardsToBoard = () => {
-  for (let card in cards) {
+  for (let key in cards) {
+    let card = cards[key];
     let div = document.createElement('div');
     div.classList.add('card');
     div.classList.add('card-closed');
     div.innerText = cardCharacter;
+    div.addEventListener('click', function() {
+      console.log(`Card at x: ${card.x}, y: ${card.y} was clicked.`);
+    });
     board.appendChild(div);
   }
 }
@@ -38,13 +41,11 @@ addCardsToBoard();
 console.log(cards);
 
 
-// Add event listener
+// Card character select event listener
 cardCharacterSelect.addEventListener('change', function() {
-  // Get the new value
   let cardCharacter = this.value;
 
   // Update the UI
-  // For example, if you want to update all cards on the board:
   let cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.innerText = cardCharacter;
