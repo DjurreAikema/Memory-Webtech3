@@ -15,6 +15,7 @@ export const stopTimer = () => {
 }
 
 export const resetTimer = () => {
+  stopTimer();
   seconds = 0;
   document.getElementById('currentPlayTime').textContent = `${seconds} s`;
 }

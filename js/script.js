@@ -95,7 +95,6 @@ const endGame = () => {
 }
 
 const resetGame = () => {
-  stopTimer();
   resetTimer();
   gameStarted = false;
   board.innerHTML = '';
