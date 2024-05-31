@@ -29,19 +29,18 @@ foundPairsElement.textContent = foundPairs.toString();
 
 // check open cards for a pair
 const checkForPair = () => {
-  if (openCards.length === 2) {
-    const card1 = openCards[0];
-    const card2 = openCards[1];
+  if (openCards.length !== 2) return;
+  const card1 = openCards[0];
+  const card2 = openCards[1];
 
-    if (card1.content === card2.content) {
-      card1.changeState('found');
-      card2.changeState('found');
-      foundPairs++;
-      foundPairsElement.textContent = foundPairs.toString();
-      openCards = [];
-      if (foundPairs === pairs) endGame();
-    }
-  }
+  if (card1.content !== card2.content) return;
+  card1.changeState('found');
+  card2.changeState('found');
+  foundPairs++;
+  foundPairsElement.textContent = foundPairs.toString();
+  openCards = [];
+
+  if (foundPairs === pairs) endGame();
 }
 
 const openCardAndCheckPair = (card) => {
@@ -77,14 +76,13 @@ const addCardsToBoard = () => {
     let div = document.createElement('div');
     div.classList.add('card');
     div.classList.add('card-closed');
+    div.style.backgroundSize = 'cover';
     div.innerText = cardCharacter;
 
-    if (card.content.startsWith('http')) {
-      let img = document.createElement('img');
-      img.src = card.content;
-      img.style.display = 'none';
-      div.appendChild(img);
-    }
+    // if (card.content.startsWith('http')) {
+    //   div.style.backgroundImage = `url(${card.content})`;
+    //   div.style.backgroundSize = 'cover';
+    // }
 
     card.element = div;
 
@@ -108,7 +106,7 @@ const resetGame = () => {
   resetTimer();
   gameStarted = false;
   board.innerHTML = '';
-  cards = generateCards(boardSize, pairs);
+  // cards = generateCards(boardSize, pairs); TODO
   foundPairs = 0;
   foundPairsElement.textContent = foundPairs.toString();
   addCardsToBoard();
