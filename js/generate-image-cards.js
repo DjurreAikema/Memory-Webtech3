@@ -11,7 +11,7 @@ export const generateImageCards = async (boardSize, pairs) => {
 
   for (let x = 0; x < boardSize; x++) {
     for (let y = 0; y < boardSize; y++) {
-      cards[`${x}, ${y}`] = new CardModel(x, y, randomImages.pop(), CardStateEnum.CLOSED, null, true);
+      cards[`${x}, ${y}`] = new CardModel(randomImages.pop(), CardStateEnum.CLOSED, null, true);
     }
   }
 

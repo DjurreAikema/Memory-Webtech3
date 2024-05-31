@@ -79,11 +79,6 @@ const addCardsToBoard = () => {
     div.style.backgroundSize = 'cover';
     div.innerText = cardCharacter;
 
-    // if (card.content.startsWith('http')) {
-    //   div.style.backgroundImage = `url(${card.content})`;
-    //   div.style.backgroundSize = 'cover';
-    // }
-
     card.element = div;
 
     div.addEventListener('click', function () {
