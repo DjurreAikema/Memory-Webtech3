@@ -10,6 +10,6 @@ export const startTimer = () => {
   }, 1000);
 }
 
-const stopTimer = () => {
+export const stopTimer = () => {
   clearInterval(timer);
 }

@@ -1,5 +1,5 @@
 import {generateCards} from "./generate-cards.js";
-import {startTimer} from "./timer.js";
+import {startTimer, stopTimer} from "./timer.js";
 
 // --- Elements
 const board = document.getElementById('board');
@@ -15,7 +15,8 @@ let boardSize = document.getElementById('boardSize').value;
 let cardCharacter = document.getElementById('cardCharacter').value;
 
 // --- Variables
-let cards = generateCards(boardSize);
+const pairs = boardSize * boardSize / 2;
+let cards = generateCards(boardSize, pairs);
 let openCards = [];
 let foundPairs = 0;
 let gameStarted = false;
@@ -32,6 +33,7 @@ const checkForPair = () => {
       card1.changeState('found');
       card2.changeState('found');
       foundPairs++;
+      if (foundPairs === pairs) endGame();
       foundPairsElement.textContent = foundPairs.toString();
       openCards = [];
     }
@@ -83,6 +85,12 @@ const addCardsToBoard = () => {
 }
 
 addCardsToBoard();
+
+const endGame = () => {
+  stopTimer();
+  gameStarted = false;
+  alert('You won!');
+}
 
 // --- Event Listeners --- //
 cardCharacterSelect.addEventListener('change', function () {
