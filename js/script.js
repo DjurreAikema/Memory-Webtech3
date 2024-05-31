@@ -1,4 +1,5 @@
 import {generateCards} from "./generate-cards.js";
+import {startTimer} from "./timer.js";
 
 // --- Elements
 const board = document.getElementById('board');
@@ -17,6 +18,7 @@ let cardCharacter = document.getElementById('cardCharacter').value;
 let cards = generateCards(boardSize);
 let openCards = [];
 let foundPairs = 0;
+let gameStarted = false;
 
 foundPairsElement.textContent = foundPairs.toString();
 
@@ -44,6 +46,11 @@ const openCardAndCheckPair = (card) => {
 
 // Handle a card being clicked
 const cardClicked = (card) => {
+  if (!gameStarted) {
+    startTimer();
+    gameStarted = true;
+  }
+
   if (card.state !== 'closed') return;
   if (openCards.length < 2) {
     openCardAndCheckPair(card);
