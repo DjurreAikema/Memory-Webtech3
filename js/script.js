@@ -5,6 +5,7 @@ import {generateImageCards} from "./generate-image-cards.js";
 // --- Elements
 const board = document.getElementById('board');
 const cardCharacterSelect = document.getElementById('cardCharacter');
+const cardContentSelect = document.getElementById('cardContent');
 const foundPairsElement = document.getElementById('foundPairs');
 
 const cardColorClosedPicker = document.getElementById('cardColorClosed');
@@ -19,8 +20,7 @@ let cardCharacter = document.getElementById('cardCharacter').value;
 
 // --- Variables
 const pairs = boardSize * boardSize / 2;
-// let cards = generateLetterCards(boardSize, pairs);
-let cards = await generateImageCards(boardSize, pairs);
+let cards = generateLetterCards(boardSize, pairs);
 let openCards = [];
 let foundPairs = 0;
 let gameStarted = false;
@@ -124,6 +124,19 @@ cardCharacterSelect.addEventListener('change', function () {
   cards.forEach(card => {
     card.innerText = cardCharacter;
   });
+});
+
+cardContentSelect.addEventListener('change', async function () {
+  let cardContent = this.value;
+
+  if (cardContent === 'letterCards') {
+    cards = generateLetterCards(boardSize, pairs);
+  } else if (cardContent === 'randomImageCards') {
+    cards = await generateImageCards(boardSize, pairs);
+  }
+
+  board.innerHTML = '';
+  addCardsToBoard();
 });
 
 cardColorClosedPicker.addEventListener('change', function () {
