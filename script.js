@@ -1,5 +1,4 @@
-import CardStateEnum from "./card-state.enum.js";
-import CardModel from "./card.model.js";
+import {generateCards} from "./generate-cards.js";
 
 // Elements
 const board = document.getElementById('board');
@@ -10,16 +9,7 @@ let boardSize = document.getElementById('boardSize').value;
 let cardCharacter = document.getElementById('cardCharacter').value;
 
 // Dictionary of cards
-let cards = {};
-
-// Generate cards
-const generateCards = () => {
-  for (let x = 0; x < boardSize; x++) {
-    for (let y = 0; y < boardSize; y++) {
-      cards[`${x}, ${y}`] = new CardModel(x, y, '', CardStateEnum.CLOSED);
-    }
-  }
-}
+let cards = generateCards(boardSize);
 
 // Add cards to the board
 const addCardsToBoard = () => {
@@ -29,7 +19,7 @@ const addCardsToBoard = () => {
     div.classList.add('card');
     div.classList.add('card-closed');
     div.innerText = cardCharacter;
-    div.addEventListener('click', function() {
+    div.addEventListener('click', function () {
       console.log(`Card at x: ${card.x}, y: ${card.y} was clicked.`);
     });
     board.appendChild(div);
@@ -42,7 +32,7 @@ console.log(cards);
 
 
 // Card character select event listener
-cardCharacterSelect.addEventListener('change', function() {
+cardCharacterSelect.addEventListener('change', function () {
   let cardCharacter = this.value;
 
   // Update the UI
