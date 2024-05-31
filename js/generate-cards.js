@@ -3,10 +3,10 @@ import CardStateEnum from "./card-state.enum.js";
 
 export const generateCards = (boardSize) => {
   // Dictionary of cards
-  let cards = {};
+  const cards = {};
 
   // generate random letters
-  let randomLetters = generateRandomLetters(boardSize);
+  const randomLetters = generateRandomLetters(boardSize);
 
   for (let x = 0; x < boardSize; x++) {
     for (let y = 0; y < boardSize; y++) {
@@ -19,8 +19,8 @@ export const generateCards = (boardSize) => {
 
 const generateRandomLetters = (boardSize) => {
   let letters = [];
-  let pairs = boardSize * boardSize / 2;
-  let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const pairs = boardSize * boardSize / 2;
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
   for (let i = 0; i < pairs; i++) {
     let letter = alphabet[i];
