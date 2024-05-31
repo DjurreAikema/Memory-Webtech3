@@ -13,3 +13,8 @@ export const startTimer = () => {
 export const stopTimer = () => {
   clearInterval(timer);
 }
+
+export const resetTimer = () => {
+  seconds = 0;
+  document.getElementById('currentPlayTime').textContent = `${seconds} s`;
+}
