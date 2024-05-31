@@ -17,13 +17,14 @@ let cardCharacter = document.getElementById('cardCharacter').value;
 let cards = generateCards(boardSize);
 let openCards = [];
 let foundPairs = 0;
+
 foundPairsElement.textContent = foundPairs.toString();
 
 // check open cards for a pair
 const checkForPair = () => {
   if (openCards.length === 2) {
-    let card1 = openCards[0];
-    let card2 = openCards[1];
+    const card1 = openCards[0];
+    const card2 = openCards[1];
 
     if (card1.letter === card2.letter) {
       card1.changeState('found');
@@ -35,22 +36,24 @@ const checkForPair = () => {
   }
 }
 
+const openCardAndCheckPair = (card) => {
+  card.changeState('open');
+  openCards.push(card);
+  checkForPair();
+}
+
 // Handle a card being clicked
 const cardClicked = (card) => {
-  if (card.state === 'closed' && openCards.length < 2) {
-    card.changeState('open');
-    openCards.push(card);
-    checkForPair();
-  } else if (card.state === 'closed' && openCards.length === 2) {
+  if (card.state !== 'closed') return;
+  if (openCards.length < 2) {
+    openCardAndCheckPair(card);
+  } else {
     openCards.forEach(card => {
       card.changeState('closed');
       card.element.innerText = cardCharacter;
     });
     openCards = [];
-
-    card.changeState('open');
-    openCards.push(card);
-    checkForPair();
+    openCardAndCheckPair(card);
   }
 }
 
@@ -78,7 +81,6 @@ addCardsToBoard();
 cardCharacterSelect.addEventListener('change', function () {
   let cardCharacter = this.value;
 
-  // Update the UI
   let cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.innerText = cardCharacter;
