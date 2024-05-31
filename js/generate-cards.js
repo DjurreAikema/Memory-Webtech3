@@ -19,7 +19,6 @@ export const generateCards = (boardSize, pairs) => {
 
 const generateRandomLetters = (boardSize, pairs) => {
   let letters = [];
-  // const pairs = boardSize * boardSize / 2;
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
   for (let i = 0; i < pairs; i++) {
@@ -32,7 +31,7 @@ const generateRandomLetters = (boardSize, pairs) => {
 }
 
 // Shuffle array
-const shuffle = (array) => {
+export const shuffle = (array) => {
   let currentIndex = array.length, randomIndex;
 
   while (currentIndex !== 0) {

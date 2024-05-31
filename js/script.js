@@ -1,5 +1,6 @@
 import {generateCards} from "./generate-cards.js";
 import {resetTimer, startTimer, stopTimer} from "./timer.js";
+import {generateImageCards} from "./generate-image-cards.js";
 
 // --- Elements
 const board = document.getElementById('board');
@@ -18,7 +19,8 @@ let cardCharacter = document.getElementById('cardCharacter').value;
 
 // --- Variables
 const pairs = boardSize * boardSize / 2;
-let cards = generateCards(boardSize, pairs);
+// let cards = generateCards(boardSize, pairs);
+let cards = await generateImageCards(boardSize, pairs);
 let openCards = [];
 let foundPairs = 0;
 let gameStarted = false;
@@ -75,7 +77,7 @@ const addCardsToBoard = () => {
     let div = document.createElement('div');
     div.classList.add('card');
     div.classList.add('card-closed');
-    div.innerText = cardCharacter;
+    div.innerHTML = cardCharacter;
     card.element = div;
 
     div.addEventListener('click', function () {
