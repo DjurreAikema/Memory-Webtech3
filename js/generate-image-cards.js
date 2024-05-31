@@ -22,9 +22,8 @@ const generateRandomImageUrls = async (boardSize, pairs) => {
   let images = [];
 
   for (let i = 0; i < pairs; i++) {
-    const response = await fetch('https://dog.ceo/api/breeds/image/random');
-    const data = await response.json();
-    const imgUrl = data.message;
+    const response = await fetch('https://picsum.photos/200');
+    const imgUrl = response.url;
 
     images.push(imgUrl);
     images.push(imgUrl);
