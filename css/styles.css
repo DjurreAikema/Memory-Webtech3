@@ -58,30 +58,6 @@ body {
   grid-area: settings;
 }
 
-.card {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-
-  display: flex;
-  flex-grow: 1;
-
-  align-items: center;
-  justify-content: center;
-}
-
-.card-closed {
-  background-color: lightgreen;
-}
-
-.card-open {
-  background-color: green;
-}
-
-.card-found {
-  background-color: purple;
-}
-
 p {
   margin: 0;
 }

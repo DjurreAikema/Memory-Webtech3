@@ -5,6 +5,10 @@ const board = document.getElementById('board');
 const cardCharacterSelect = document.getElementById('cardCharacter');
 const foundPairsElement = document.getElementById('foundPairs');
 
+const cardColorClosedPicker = document.getElementById('cardColorClosed');
+const cardColorOpenPicker = document.getElementById('cardColorOpen');
+const cardColorFoundPicker = document.getElementById('cardColorFound');
+
 // --- Inputs
 let boardSize = document.getElementById('boardSize').value;
 let cardCharacter = document.getElementById('cardCharacter').value;
@@ -79,4 +83,16 @@ cardCharacterSelect.addEventListener('change', function () {
   cards.forEach(card => {
     card.innerText = cardCharacter;
   });
+});
+
+cardColorClosedPicker.addEventListener('change', function () {
+  document.documentElement.style.setProperty('--card-color-closed', this.value);
+});
+
+cardColorOpenPicker.addEventListener('change', function () {
+  document.documentElement.style.setProperty('--card-color-open', this.value);
+});
+
+cardColorFoundPicker.addEventListener('change', function () {
+  document.documentElement.style.setProperty('--card-color-found', this.value);
 });

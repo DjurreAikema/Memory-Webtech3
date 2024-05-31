@@ -1,0 +1,29 @@
+:root {
+  --card-color-closed: lightgreen;
+  --card-color-open: green;
+  --card-color-found: purple;
+}
+
+.card {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+
+  display: flex;
+  flex-grow: 1;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.card-closed {
+  background-color: var(--card-color-closed);
+}
+
+.card-open {
+  background-color: var(--card-color-open);
+}
+
+.card-found {
+  background-color: var(--card-color-found);
+}
