@@ -35,9 +35,9 @@ const checkForPair = () => {
       card1.changeState('found');
       card2.changeState('found');
       foundPairs++;
-      if (foundPairs === pairs) endGame();
       foundPairsElement.textContent = foundPairs.toString();
       openCards = [];
+      if (foundPairs === pairs) endGame();
     }
   }
 }
@@ -91,7 +91,7 @@ addCardsToBoard();
 const endGame = () => {
   stopTimer();
   gameStarted = false;
-  alert('You won!');
+  alert('You won! The game took ' + document.getElementById('currentPlayTime').textContent + 'econds.');
 }
 
 const resetGame = () => {
