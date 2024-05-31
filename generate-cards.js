@@ -10,7 +10,7 @@ export const generateCards = (boardSize) => {
 
   for (let x = 0; x < boardSize; x++) {
     for (let y = 0; y < boardSize; y++) {
-      cards[`${x}, ${y}`] = new CardModel(x, y, randomLetters.pop(), CardStateEnum.CLOSED);
+      cards[`${x}, ${y}`] = new CardModel(x, y, randomLetters.pop(), CardStateEnum.CLOSED, null);
     }
   }
 

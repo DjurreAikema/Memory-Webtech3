@@ -1,15 +1,51 @@
 import {generateCards} from "./generate-cards.js";
 
-// Elements
+// --- Elements
 const board = document.getElementById('board');
 const cardCharacterSelect = document.getElementById('cardCharacter');
 
-// Inputs
+// --- Inputs
 let boardSize = document.getElementById('boardSize').value;
 let cardCharacter = document.getElementById('cardCharacter').value;
 
-// Dictionary of cards
+// --- Variables
 let cards = generateCards(boardSize);
+let openCards = [];
+let foundPairs = 0;
+
+// check open cards for a pair
+const checkForPair = () => {
+  if (openCards.length === 2) {
+    let card1 = openCards[0];
+    let card2 = openCards[1];
+
+    if (card1.letter === card2.letter) {
+      card1.changeState('found');
+      card2.changeState('found');
+      foundPairs++;
+      openCards = [];
+    }
+  }
+}
+
+// Handle a card being clicked
+const cardClicked = (card) => {
+  if (card.state === 'closed' && openCards.length < 2) {
+    card.changeState('open');
+    openCards.push(card);
+    checkForPair();
+  } else if (card.state === 'closed' && openCards.length === 2) {
+    openCards.forEach(card => {
+      card.changeState('closed');
+      card.element.innerText = cardCharacter;
+    });
+    openCards = [];
+
+    card.changeState('open');
+    openCards.push(card);
+    checkForPair();
+  }
+}
 
 // Add cards to the board
 const addCardsToBoard = () => {
@@ -19,19 +55,19 @@ const addCardsToBoard = () => {
     div.classList.add('card');
     div.classList.add('card-closed');
     div.innerText = cardCharacter;
+    card.element = div;
+
     div.addEventListener('click', function () {
-      console.log(`Card at x: ${card.x}, y: ${card.y} was clicked.`);
+      cardClicked(card);
     });
+
     board.appendChild(div);
   }
 }
 
-generateCards();
 addCardsToBoard();
-console.log(cards);
 
-
-// Card character select event listener
+// --- Event Listeners --- //
 cardCharacterSelect.addEventListener('change', function () {
   let cardCharacter = this.value;
 
