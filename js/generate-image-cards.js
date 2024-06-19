@@ -16,23 +16,24 @@ export const generateImageCards = async (boardSize, pairs) => {
   }
 
   return cards;
-}
+};
 
 const generateRandomImageUrls = async (boardSize, pairs) => {
-  let images = [];
+  const imagePromises = Array.from({length: pairs}, () =>
+    fetch('https://picsum.photos/200'));
 
-  for (let i = 0; i < pairs; i++) {
-    try {
-      const response = await fetch('https://picsum.photos/200');
+  try {
+    const responses = await Promise.all(imagePromises);
+    const images = [];
 
+    for (const response of responses) {
       const imgUrl = response.url;
-
       images.push(imgUrl);
       images.push(imgUrl);
-    } catch (error) {
-      console.error('Error fetching image', error);
     }
-  }
 
-  return shuffle(images);
-}
+    return shuffle(images);
+  } catch (error) {
+    console.error('Error fetching images', error);
+  }
+};
