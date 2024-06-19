@@ -20,27 +20,35 @@ body {
 
 .inline-form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
-label {
+.inline-form label {
   font-weight: bold;
 }
 
-input[type="email"] {
-  margin-right: 20px;
+.inline-form input[type="email"],
+.inline-form input[type="text"] {
+  margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;
 }
 
-input[type="submit"], #return-button {
+.inline-form input[type="color"] {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.inline-form input[type="submit"], #return-button {
   background-color: #4CAF50;
   color: white;
   padding: 15px 20px;
   border: none;
   cursor: pointer;
   opacity: 0.9;
+  margin-top: 10px;
 }
 
 #return-button {

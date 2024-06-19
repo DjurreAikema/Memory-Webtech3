@@ -12,10 +12,21 @@
 <div class="form-container">
     <button id="return-button">Return</button>
     <h1 id="player-name"></h1>
+    <form id="email-form" class="inline-form">
+        <div class="email-container">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <input type="submit" value="Update Email">
+        </div>
+    </form>
     <form id="preferences-form" class="inline-form">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <input type="submit" value="Update Email">
+        <label for="preferred_api">Preferred API:</label>
+        <input type="text" id="preferred_api" name="preferred_api">
+        <label for="color_closed">Color Closed:</label>
+        <input type="color" id="color_closed" name="color_closed">
+        <label for="color_found">Color Found:</label>
+        <input type="color" id="color_found" name="color_found">
+        <input type="submit" value="Update Preferences">
     </form>
     <div id="games-list">
         <h2>Played Games</h2>
