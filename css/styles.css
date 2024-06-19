@@ -48,6 +48,7 @@ body {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 3px;
   height: 600px;
+  max-width: 600px;
 }
 
 .high-score {
