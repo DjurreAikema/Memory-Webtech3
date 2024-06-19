@@ -58,7 +58,12 @@ const updatePlayerPreferences = async (id, preferences) => {
       body: JSON.stringify(preferences)
     });
 
-    return await response.json();
+    console.log(JSON.stringify(preferences))
+    if (response.ok) {
+      alert('Preferences updated successfully');
+    } else {
+      alert('An error occurred while updating preferences');
+    }
   } catch (error) {
     console.error('An error occurred while updating player preferences:', error);
   }
@@ -70,7 +75,7 @@ document.getElementById('preferences-form').addEventListener('submit', async (ev
   const jwt = localStorage.getItem('jwt');
   const {sub: id} = JSON.parse(atob(jwt.split('.')[1]));
   const preferences = {
-    preferred_api: document.getElementById('preferred_api').value,
+    api: document.getElementById('preferred_api').value,
     color_closed: document.getElementById('color_closed').value,
     color_found: document.getElementById('color_found').value
   };
@@ -88,7 +93,11 @@ const updatePlayerEmail = async (id, email) => {
       body: JSON.stringify({email})
     });
 
-    return await response.json();
+    if (response.ok) {
+      alert('Email updated successfully');
+    } else {
+      alert('An error occurred while updating email');
+    }
   } catch (error) {
     console.error('An error occurred while updating player email:', error);
   }
