@@ -21,11 +21,12 @@ window.addEventListener('DOMContentLoaded', () => {
     if (response.ok) {
       const data = await response.json();
       const jwt = data.token;
-      // Store the JWT in local storage
+      const expirationTime = Date.now() + 3600 * 1000;
+
       localStorage.setItem('jwt', jwt);
-      // Store the expiration time in local storage
-      const expirationTime = Date.now() + 3600 * 1000; // JWT TTL is 3600 seconds
       localStorage.setItem('jwtExpiration', expirationTime);
+      localStorage.removeItem('alertShown');
+
       // alert('Login successful!');
       window.location.href = 'index.html';
     } else {

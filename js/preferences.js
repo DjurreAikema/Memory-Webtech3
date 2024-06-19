@@ -1,6 +1,10 @@
 // Function to populate the form with the user's current preferences
 const populateForm = async () => {
   const jwt = localStorage.getItem('jwt');
+  if (!jwt) {
+    window.location.href = 'index.html';
+    return;
+  }
   const {sub: id} = JSON.parse(atob(jwt.split('.')[1]));
   const player = await getPlayer(id);
   const preferences = await getPlayerPreferences(id);
