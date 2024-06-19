@@ -1,6 +1,7 @@
 import {generateLetterCards} from "./generate-letter-cards.js";
 import {resetTimer, startTimer, stopTimer} from "./timer.js";
 import {generateImageCards} from "./generate-image-cards.js";
+import {getTopFive} from "./top-five.js";
 
 // --- Elements
 const board = document.getElementById('board');
@@ -41,13 +42,13 @@ const checkForPair = () => {
   openCards = [];
 
   if (foundPairs === pairs) endGame();
-}
+};
 
 const openCardAndCheckPair = (card) => {
   card.changeState('open');
   openCards.push(card);
   checkForPair();
-}
+};
 
 // Handle a card being clicked
 const cardClicked = (card) => {
@@ -67,7 +68,7 @@ const cardClicked = (card) => {
     openCards = [];
     openCardAndCheckPair(card);
   }
-}
+};
 
 // Add cards to the board
 const addCardsToBoard = () => {
@@ -87,15 +88,32 @@ const addCardsToBoard = () => {
 
     board.appendChild(div);
   }
-}
+};
 
+const fillHighscoreList = async () => {
+  const highscoreList = document.querySelector('.high-score ol');
+  highscoreList.innerHTML = '';
+
+  try {
+    const scores = await getTopFive();
+    scores.forEach(score => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${score.username}: ${score.score}`;
+      highscoreList.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Error filling highscore list', error);
+  }
+};
+
+await fillHighscoreList();
 addCardsToBoard();
 
 const endGame = () => {
   stopTimer();
   gameStarted = false;
   alert('You won! The game took ' + document.getElementById('currentPlayTime').textContent + 'econds.');
-}
+};
 
 const resetGame = () => {
   resetTimer();
@@ -105,7 +123,7 @@ const resetGame = () => {
   foundPairs = 0;
   foundPairsElement.textContent = foundPairs.toString();
   addCardsToBoard();
-}
+};
 
 // --- Event Listeners --- //
 startGameButton.addEventListener('click', resetGame);
