@@ -68,9 +68,8 @@ export class AggregateService {
           return EMPTY;
         }),
         map((response: any[]) => {
-          let aggregate = this.mapResponseToAggregate(response);
-          console.log(aggregate);
-          return aggregate;
+          // console.log(aggregate);
+          return this.mapResponseToAggregate(response);
         }),
       );
   }

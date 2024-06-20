@@ -7,6 +7,7 @@ import {PlayersService} from "./data-access/players.service";
 import {NavbarComponent} from "./ui/navbar.component";
 import {PlayerListComponent} from "./ui/player-list.component";
 import {DateListComponent} from "./ui/date-list.component";
+import {AggregateComponent} from "./ui/aggregate.component";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ import {DateListComponent} from "./ui/date-list.component";
     JsonPipe,
     NavbarComponent,
     PlayerListComponent,
-    DateListComponent
+    DateListComponent,
+    AggregateComponent
   ],
   template: `
     <div class="home-container">
@@ -24,7 +26,7 @@ import {DateListComponent} from "./ui/date-list.component";
       <app-navbar class="navbar"/>
 
       <section class="aggregate">
-        a
+        <app-aggregate [loading]="aggregateService.loading()" [aggregate]="aggregateService.aggregate()"/>
       </section>
 
       <section class="dates">
@@ -62,6 +64,7 @@ import {DateListComponent} from "./ui/date-list.component";
 
     .aggregate {
       grid-area: aggregate;
+      padding: 10px;
     }
 
     .dates {
