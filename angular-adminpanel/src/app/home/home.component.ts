@@ -1,5 +1,5 @@
 import {Component, effect, inject} from '@angular/core';
-import {LogoutButtonComponent} from "../shared/components/logout-button.component";
+import {LogoutButtonComponent} from "../login/ui/logout-button.component";
 import {AggregateService} from "./data-access/aggregate.service";
 import {JsonPipe} from "@angular/common";
 import {DatesService} from "./data-access/dates.service";
@@ -9,6 +9,7 @@ import {PlayerListComponent} from "./ui/player-list.component";
 import {DateListComponent} from "./ui/date-list.component";
 import {AggregateComponent} from "./ui/aggregate.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../login/data-access/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -81,6 +82,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export default class HomeComponent {
 
+  public authService: AuthService = inject(AuthService);
   public datesService: DatesService = inject(DatesService);
   public playersService: PlayersService = inject(PlayersService);
   public aggregateService: AggregateService = inject(AggregateService);
@@ -88,6 +90,7 @@ export default class HomeComponent {
 
   constructor() {
     effect((): void => {
+      this.checkAndOpenSnackBar(this.authService.error());
       this.checkAndOpenSnackBar(this.datesService.error());
       this.checkAndOpenSnackBar(this.playersService.error());
       this.checkAndOpenSnackBar(this.aggregateService.error());
@@ -99,5 +102,4 @@ export default class HomeComponent {
       this.snackBar.open(error, 'X', {duration: 2000, panelClass: ['snackbar-danger']});
     }
   }
-
 }

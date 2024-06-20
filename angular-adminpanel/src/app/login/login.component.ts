@@ -1,14 +1,13 @@
 import {Component, inject} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
+import {AuthService} from "./data-access/auth.service";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [MatInputModule],
   template: `
-    <form class="login-form" (submit)="login(username.value, password.value, $event)">
+    <form class="login-form" (submit)="loginUser(username.value, password.value, $event)">
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
         <input matInput type="text" #username required value="Henk">
@@ -38,25 +37,14 @@ import {MatInputModule} from "@angular/material/input";
       padding: 50px;
       border-radius: 5px;
     }
-
-    mat-form-field {
-      //margin-bottom: 16px;
-    }
   `]
 })
 export default class LoginComponent {
 
-  private http: HttpClient = inject(HttpClient);
-  private router: Router = inject(Router);
+  public authService: AuthService = inject(AuthService);
 
-  public login(username: string, password: string, event: Event): void {
+  public loginUser(username: string, password: string, event: Event): void {
     event.preventDefault();
-    this.http.post('/api/login_check', {username, password})
-      .subscribe((response: any): void => {
-        if (response.token) {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/']);
-        }
-      });
+    this.authService.loginFormSubmitted$.next([username, password]);
   }
 }

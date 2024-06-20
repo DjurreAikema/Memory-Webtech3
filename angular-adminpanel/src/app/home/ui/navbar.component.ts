@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {LogoutButtonComponent} from "../../shared/components/logout-button.component";
+import {Component, inject} from '@angular/core';
+import {LogoutButtonComponent} from "../../login/ui/logout-button.component";
+import {AuthService} from "../../login/data-access/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import {LogoutButtonComponent} from "../../shared/components/logout-button.compo
   template: `
     <nav class="navbar">
       <h1>Admin Panel</h1>
-      <h1></h1>
+      <h1>Welkom, {{authService.username()}}</h1>
       <app-logout-button/>
     </nav>
   `,
@@ -35,4 +36,7 @@ import {LogoutButtonComponent} from "../../shared/components/logout-button.compo
   `]
 })
 export class NavbarComponent {
+
+  public authService: AuthService = inject(AuthService)
+
 }
