@@ -6,6 +6,7 @@ import {AuthGuard} from "./shared/guards/auth.guard";
 
 import {routes} from './app.routes';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {LoginGuard} from "./shared/guards/login.guard";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    AuthGuard
+    AuthGuard,
+    LoginGuard
   ]
 };

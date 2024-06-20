@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [],
   template: `
-    <form (submit)="login(username.value, password.value)">
+    <form (submit)="login(username.value, password.value, $event)">
       <input type="text" #username placeholder="Username" required value="Henk">
       <input type="password" #password placeholder="Password" required value="henk">
       <button type="submit">Login</button>
@@ -20,14 +20,15 @@ export default class LoginComponent {
   private http: HttpClient = inject(HttpClient);
   private router: Router = inject(Router);
 
-  public login(username: string, password: string) {
-    this.http.post('http://localhost:8000/api/login_check', {username, password})
+  public login(username: string, password: string, event: Event): void {
+    event.preventDefault();
+    this.http.post('/api/login_check', {username, password})
       .subscribe((response: any): void => {
+        console.log(response);
         if (response.token) {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']);
         }
       });
   }
-
 }

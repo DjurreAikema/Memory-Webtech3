@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import {inject, Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+
+  private router: Router = inject(Router);
 
   canActivate(): boolean {
     const token = localStorage.getItem('token');
