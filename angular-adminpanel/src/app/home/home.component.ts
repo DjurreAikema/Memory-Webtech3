@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {LogoutButtonComponent} from "../shared/components/logout-button.component";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,13 @@ import {LogoutButtonComponent} from "../shared/components/logout-button.componen
   `,
   styles: ``
 })
-export default class HomeComponent {
+export default class HomeComponent implements OnInit {
 
+  private http: HttpClient = inject(HttpClient);
+
+  ngOnInit() {
+    this.http.get("/api/admin/aggregate").subscribe(res => console.log(res))
+    this.http.get("/api/admin/players").subscribe(res => console.log(res))
+    this.http.get("/api/admin/dates").subscribe(res => console.log(res))
+  }
 }
