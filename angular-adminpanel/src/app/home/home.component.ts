@@ -5,6 +5,7 @@ import {JsonPipe} from "@angular/common";
 import {DatesService} from "./data-access/dates.service";
 import {PlayersService} from "./data-access/players.service";
 import {NavbarComponent} from "./ui/navbar.component";
+import {PlayerListComponent} from "./ui/player-list.component";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import {NavbarComponent} from "./ui/navbar.component";
   imports: [
     LogoutButtonComponent,
     JsonPipe,
-    NavbarComponent
+    NavbarComponent,
+    PlayerListComponent
   ],
   template: `
     <div class="home-container">
@@ -28,7 +30,7 @@ import {NavbarComponent} from "./ui/navbar.component";
       </section>
 
       <section class="players">
-        c
+        <app-player-list [loading]="playersService.loading()" [players]="playersService.players()"/>
       </section>
 
     </div>
@@ -66,6 +68,7 @@ import {NavbarComponent} from "./ui/navbar.component";
 
     .players {
       grid-area: players;
+      padding: 10px;
     }
   `]
 })
