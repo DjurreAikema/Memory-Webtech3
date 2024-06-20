@@ -83,4 +83,5 @@ export default class HomeComponent{
   public aggregateService: AggregateService = inject(AggregateService);
   public datesService: DatesService = inject(DatesService);
   public playersService: PlayersService = inject(PlayersService);
+
 }

@@ -1,9 +1,10 @@
 import {computed, inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, EMPTY, map, Observable, Subject} from "rxjs";
+import {DateCount, DateResponse} from "../../shared/interfaces";
 
 export interface DateState {
-  dates: Date[];
+  dates: DateCount[];
   loading: boolean;
   error: string | null;
 }
@@ -24,13 +25,13 @@ export class DatesService {
 
 
   // --- Selectors
-  public dates: Signal<Date[]> = computed(() => this.state().dates);
+  public dates: Signal<DateCount[]> = computed(() => this.state().dates);
   public loading: Signal<boolean> = computed(() => this.state().loading);
   public error: Signal<string | null> = computed(() => this.state().error);
 
 
   // --- Sources
-  datesLoaded$: Observable<Date[]> = this.getDates();
+  datesLoaded$: Observable<DateCount[]> = this.getDates();
   private error$: Subject<string | null> = new Subject<string | null>();
 
 
@@ -38,7 +39,7 @@ export class DatesService {
   constructor() {
     // datesLoaded$ reducer
     this.datesLoaded$.subscribe({
-      next: (dates: Date[]) =>
+      next: (dates: DateCount[]) =>
         this.state.update((state: DateState) => ({
           ...state,
           dates,
@@ -58,18 +59,26 @@ export class DatesService {
 
 
   // --- Functions
-  private getDates(): Observable<Date[]> {
-    return this.http.get<Date[]>(`/api/admin/dates`)
+  private getDates(): Observable<DateCount[]> {
+    return this.http.get<DateResponse>(`/api/admin/dates`)
       .pipe(
         catchError((err) => {
           this.handleError(err);
           return EMPTY;
         }),
-        map((response: Date[]) => {
-          // console.log(response);
-          return response;
+        map((response: DateResponse) => {
+          let dateCounts: DateCount[] = this.mapResponseToDateCount(response);
+          console.log(dateCounts);
+          return dateCounts;
         }),
       );
+  }
+
+  private mapResponseToDateCount(response: DateResponse): DateCount[] {
+    return Object.keys(response).map(key => ({
+      date: new Date(key),
+      count: response[key]
+    }));
   }
 
   private handleError(err: HttpErrorResponse): void {
