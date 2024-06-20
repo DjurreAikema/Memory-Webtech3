@@ -42,6 +42,10 @@ import {Aggregate} from "../../shared/interfaces";
     }
   `,
   styles: [`
+    :host {
+      height: 100%;
+    }
+
     hr {
       width: 95%
     }

@@ -42,22 +42,39 @@ import {AuthService} from "../login/data-access/auth.service";
     </div>
   `,
   styles: [`
-    .home-container {
-      height: 100dvh;
-      width: 100dvw;
+    @media(max-width: 1050px) {
+      .home-container {
+        height: 100dvh;
+        width: 100dvw;
 
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-      grid-template-rows: 60px minmax(0, 1fr);
-      grid-template-areas:
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+
+        overflow-x: hidden;
+      }
+    }
+
+    @media(min-width: 1051px) {
+      .home-container {
+        height: 100dvh;
+        width: 100dvw;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: 60px minmax(0, 1fr);
+        grid-template-areas:
         "navbar navbar navbar"
         "aggregate dates players";
 
-      justify-items: stretch;
-      align-items: stretch;
+        justify-items: stretch;
+        align-items: stretch;
 
-      justify-content: stretch;
-      align-content: stretch;
+        justify-content: stretch;
+        align-content: stretch;
+
+        overflow-x: hidden;
+      }
     }
 
     .navbar {

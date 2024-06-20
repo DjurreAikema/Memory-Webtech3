@@ -10,12 +10,18 @@ import {AuthService} from "../../login/data-access/auth.service";
   ],
   template: `
     <nav class="navbar">
-      <h1>Admin Panel</h1>
+      <h1 class="hide">Admin Panel</h1>
       <h1>Welkom, {{authService.username()}}</h1>
       <app-logout-button/>
     </nav>
   `,
   styles: [`
+    @media(max-width: 600px) {
+      .hide {
+        display: none;
+      }
+    }
+
     .navbar {
       height: 100%;
 
@@ -25,7 +31,7 @@ import {AuthService} from "../../login/data-access/auth.service";
       justify-content: space-between;
       gap: 20px;
 
-      padding: 0 20px;
+      padding: 10px 20px;
       color: white;
       background-color: rgb(84, 109, 120);
     }
