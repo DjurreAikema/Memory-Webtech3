@@ -5,7 +5,7 @@ import {catchError, EMPTY, map, Observable, Subject} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 export interface AggregateState {
-  aggregates: Aggregate[];
+  aggregate: Aggregate | null;
   loading: boolean;
   error: string | null;
 }
@@ -19,31 +19,31 @@ export class AggregateService {
 
   // --- State
   private state: WritableSignal<AggregateState> = signal<AggregateState>({
-    aggregates: [],
+    aggregate: null,
     loading: true,
     error: null
   });
 
 
   // --- Selectors
-  public aggregates: Signal<Aggregate[]> = computed(() => this.state().aggregates);
+  public aggregate: Signal<Aggregate | null> = computed(() => this.state().aggregate);
   public loading: Signal<boolean> = computed(() => this.state().loading);
   public error: Signal<string | null> = computed(() => this.state().error);
 
 
   // --- Sources
-  aggregatesLoaded$: Observable<Aggregate[]> = this.getAggregates();
+  aggregateLoaded$: Observable<Aggregate> = this.getAggregate();
   private error$: Subject<string | null> = new Subject<string | null>();
 
 
   // --- Reducers
   constructor() {
     // aggregatesLoaded$ reducer
-    this.aggregatesLoaded$.pipe(takeUntilDestroyed()).subscribe({
-      next: (aggregates: Aggregate[]) =>
+    this.aggregateLoaded$.pipe(takeUntilDestroyed()).subscribe({
+      next: (aggregate: Aggregate) =>
         this.state.update((state: AggregateState) => ({
           ...state,
-          aggregates,
+          aggregate,
           loading: false
         })),
       error: (err) => this.state.update((state: AggregateState) => ({...state, error: err}))
@@ -60,18 +60,30 @@ export class AggregateService {
 
 
   // --- Functions
-  private getAggregates(): Observable<Aggregate[]> {
-    return this.http.get<Aggregate[]>(`/api/admin/aggregate`)
+  private getAggregate(): Observable<Aggregate> {
+    return this.http.get<any[]>(`/api/admin/aggregate`)
       .pipe(
         catchError((err) => {
           this.handleError(err);
           return EMPTY;
         }),
-        map((response: Aggregate[]) => {
-          // console.log(response);
-          return response;
+        map((response: any[]) => {
+          let aggregate = this.mapResponseToAggregate(response);
+          console.log(aggregate);
+          return aggregate;
         }),
       );
+  }
+
+  private mapResponseToAggregate(response: any[]): Aggregate {
+    return {
+      aantal_spellen: response[0].aantal_spellen,
+      aantal_spelers: response[1].aantal_spelers,
+      aggregateApi: response[2].map((item: any) => ({
+        api: item.api,
+        aantal: item.aantal
+      }))
+    };
   }
 
   private handleError(err: HttpErrorResponse): void {
