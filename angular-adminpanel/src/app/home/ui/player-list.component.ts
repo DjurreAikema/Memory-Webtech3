@@ -30,10 +30,6 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     }
   `,
   styles: [`
-    mat-progress-spinner {
-      margin: auto;
-    }
-
     hr {
       width: 95%
     }
@@ -48,11 +44,6 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
     .item {
       flex: 1;
-    }
-
-    .bold {
-      font-weight: 500;
-      color: var(--accent-color);
     }
   `]
 })

@@ -6,6 +6,7 @@ import {DatesService} from "./data-access/dates.service";
 import {PlayersService} from "./data-access/players.service";
 import {NavbarComponent} from "./ui/navbar.component";
 import {PlayerListComponent} from "./ui/player-list.component";
+import {DateListComponent} from "./ui/date-list.component";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ import {PlayerListComponent} from "./ui/player-list.component";
     LogoutButtonComponent,
     JsonPipe,
     NavbarComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    DateListComponent
   ],
   template: `
     <div class="home-container">
@@ -26,7 +28,7 @@ import {PlayerListComponent} from "./ui/player-list.component";
       </section>
 
       <section class="dates">
-        b
+        <app-date-list [loading]="datesService.loading()" [dates]="datesService.dates()"/>
       </section>
 
       <section class="players">
@@ -64,6 +66,7 @@ import {PlayerListComponent} from "./ui/player-list.component";
 
     .dates {
       grid-area: dates;
+      padding: 10px;
     }
 
     .players {

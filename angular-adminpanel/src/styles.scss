@@ -12,6 +12,15 @@ body {
   color: black;
 }
 
+.bold {
+  font-weight: 500;
+  color: rgb(84, 109, 120);
+}
+
+mat-progress-spinner {
+  margin: auto;
+}
+
 
 // --- Buttons --- //
 @import "global-styles/styles.buttons";
