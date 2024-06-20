@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [],
   template: `
-    <button (click)="logout()">Logout</button>
+    <button class="main-button-primary" (click)="logout()">Logout</button>
   `,
   styles: ``
 })

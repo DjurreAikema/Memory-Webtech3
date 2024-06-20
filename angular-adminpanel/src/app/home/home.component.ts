@@ -1,37 +1,77 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {LogoutButtonComponent} from "../shared/components/logout-button.component";
 import {AggregateService} from "./data-access/aggregate.service";
 import {JsonPipe} from "@angular/common";
+import {DatesService} from "./data-access/dates.service";
+import {PlayersService} from "./data-access/players.service";
+import {NavbarComponent} from "./ui/navbar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     LogoutButtonComponent,
-    JsonPipe
+    JsonPipe,
+    NavbarComponent
   ],
   template: `
-    <p>
-      home works!
-    </p>
+    <div class="home-container">
 
-<!--    <pre>{{ aggregateService.aggregate() | json }}</pre>-->
-<!--    <pre>{{ aggregateService.aggregate()?.aantal_spelers | json }}</pre>-->
-<!--    <pre>{{ aggregateService.aggregate()?.aantal_spellen | json }}</pre>-->
-<!--    <pre>{{ aggregateService.aggregate()?.aggregateApi | json }}</pre>-->
+      <app-navbar class="navbar"/>
 
-    <app-logout-button/>
+      <section class="aggregate">
+        a
+      </section>
+
+      <section class="dates">
+        b
+      </section>
+
+      <section class="players">
+        c
+      </section>
+
+    </div>
   `,
-  styles: ``
+  styles: [`
+    .home-container {
+      height: 100dvh;
+      width: 100dvw;
+
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: 60px minmax(0, 1fr);
+      grid-template-areas:
+        "navbar navbar navbar"
+        "aggregate dates players";
+
+      justify-items: stretch;
+      align-items: stretch;
+
+      justify-content: stretch;
+      align-content: stretch;
+    }
+
+    .navbar {
+      grid-area: navbar;
+    }
+
+    .aggregate {
+      grid-area: aggregate;
+    }
+
+    .dates {
+      grid-area: dates;
+    }
+
+    .players {
+      grid-area: players;
+    }
+  `]
 })
-export default class HomeComponent implements OnInit {
+export default class HomeComponent{
 
-  // private http: HttpClient = inject(HttpClient);
   public aggregateService: AggregateService = inject(AggregateService);
-
-  ngOnInit() {
-    // this.http.get("/api/admin/aggregate").subscribe(res => console.log(res))
-    // this.http.get("/api/admin/players").subscribe(res => console.log(res))
-    // this.http.get("/api/admin/dates").subscribe(res => console.log(res))
-  }
+  public datesService: DatesService = inject(DatesService);
+  public playersService: PlayersService = inject(PlayersService);
 }
