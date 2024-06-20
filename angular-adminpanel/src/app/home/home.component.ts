@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
+import {LogoutButtonComponent} from "../shared/components/logout-button.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    LogoutButtonComponent
+  ],
   template: `
     <p>
       home works!
     </p>
+
+    <app-logout-button/>
   `,
   styles: ``
 })

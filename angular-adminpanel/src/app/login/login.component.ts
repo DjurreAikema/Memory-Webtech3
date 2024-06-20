@@ -24,7 +24,6 @@ export default class LoginComponent {
     event.preventDefault();
     this.http.post('/api/login_check', {username, password})
       .subscribe((response: any): void => {
-        console.log(response);
         if (response.token) {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']);
