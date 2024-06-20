@@ -68,7 +68,6 @@ export class AggregateService {
           return EMPTY;
         }),
         map((response: any[]) => {
-          // console.log(aggregate);
           return this.mapResponseToAggregate(response);
         }),
       );

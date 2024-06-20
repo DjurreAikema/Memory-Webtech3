@@ -67,7 +67,6 @@ export class PlayersService {
           return EMPTY;
         }),
         map((response: Player[]) => {
-          // console.log(response);
           return response;
         }),
       );

@@ -67,9 +67,7 @@ export class DatesService {
           return EMPTY;
         }),
         map((response: DateResponse) => {
-          let dateCounts: DateCount[] = this.mapResponseToDateCount(response);
-          console.log(dateCounts);
-          return dateCounts;
+          return this.mapResponseToDateCount(response);
         }),
       );
   }
